@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Haircuts | Book Your Appointment</title>
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #d4af37; /* Gold accent */
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+        }
+
+        .contact-top {
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3') center/cover;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+        }
+
+        /* Main Content Grid */
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                margin: 2rem auto;
+            }
+            .hero h1 { font-size: 2.5rem; }
+        }
+
+        /* Services Section styling */
+        .services h2, .booking h2 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .services h2::after, .booking h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .service-category {
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+
+        .menu-item-details {
+            padding-right: 1.5rem;
+        }
+
+        .menu-item h3 { 
+            font-size: 1.15rem; 
+            color: #111;
+        }
+        
+        .menu-item p {
+            font-size: 0.9rem; 
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .menu-item .duration {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .price { 
+            font-weight: bold; 
+            font-size: 1.2rem;
+            color: var(--accent-color); 
+            white-space: nowrap;
+        }
+
+        /* Booking Form */
+        .booking-card {
+            background-color: var(--light-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 120px;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ccc;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p { margin-bottom: 0.5rem; }
+        .footer-highlight { color: #fff; font-weight: bold; }
+
+        /* Success Message Splash */
+        #successMessage {
+            display: none;
+            background-color: #e6f4ea;
+            color: #137333;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #dadce0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">ESSENTIAL HAIRCUTS</div>
+            <div class="contact-top">📞 Call: 0509529509</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Look Sharp. Feel Confident.</h1>
+        <p>Premium barbering and styling services tailored exclusively to you. Book your look with Essential Haircuts today.</p>
+        <a href="#book" class="btn">Book Your Look</a>
+    </section>
+
+    <!-- Main Content Menu Grid -->
+    <div class="container">
+        
+        <!-- Services and Hairstyles Section -->
+        <section class="services">
+            <h2>Our Hairstyle Menu</h2>
+            <p style="color: #666;">Every service includes a professional consultation, premium hair products, and a precise finish.</p>
+            
+            <!-- Category: Short & Sharp Fades -->
+            <div class="service-category">Short Cuts & Fades</div>
+            
+            <div class="menu-item">
+                <div class="menu-item-details">
+                    <h3>Skin Fade / Bald Fade</h3>
+                    <p>High, mid, or low fade blended flawlessly down to the skin.</p>
+                    <span class="duration">⏱ 45 mins</span>
+                </div>
+                <div class="price">$35</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-details">
+                    <h3>Classic Buzz Cut</h3>
+                    <p>Clean, uniform length all over with crisp, detailed edge lineup.</p>
+                    <span class="duration">⏱ 20 mins</span>
+                </div>
+                <div class="price">$20</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-details">
+                    <h3>The Taper Fade</h3>
+                    <p>Clean blend focused only around the temples and the neckline.</p>
+                    <span class="duration">⏱ 35 mins</span>
+                </div>
+                <div class="price">$30</div>
+            </div>
+
+            <!-- Category: Modern & Textured Styles -->
+            <div class="service-category">Modern Styling</div>
+            
+            <div class="menu-item">
+                <div class="menu-item-details">
+                    <h3>Textured Crop / Caesar Cut</h3>
+                    <p>Short textured top with a modern fringe, paired with a sharp fade.</p>
+                    <span class="duration">⏱ 45 mins</span>
+                </div>
+                <div class="price">$35</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-details">
+                    <h3>Classic Pompadour / Quiff</h3>
+                    <p>High-volume slicked back or textured top style for a timeless look.</p>
+                    <span class="duration">⏱ 50 mins</span>
+                </div>
+                <div class="price">$40</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-details">
+                    <h3>The Gentleman’s Side Part</h3>
+                    <p>Traditional clean-cut contour styling. Elegant, split, and slicked.</p>
+                    <span class="duration">⏱ 40 mins</span>
+                </div>
+                <div class="price">$30</div>
+            </div>
+
+            <!-- Category: Premium Packages -->
+            <div class="service-category">Combos & Premium Extras</div>
+            
+            <div class="menu-item">
+                <div class="menu-item-details">
+                    <h3>Essential Haircut & Beard Groom</h3>
+                    <p>Any haircut of choice plus a full beard trim, reshape, hot towel, and oil treatment.</p>
+                    <span class="duration">⏱ 60 mins</span>
+                </div>
+                <div class="price">$55</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-details">
+                    <h3>Sharp Lineup & Beard Detailing</h3>
+                    <p>No length off the top. Razor precision neck/hairline shape and full beard cleanup.</p>
+                    <span class="duration">⏱ 25 mins</span>
+                </div>
+                <div class="price">$25</div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section class="booking" id="book">
+            <h2>Secure Your Slot</h2>
+            <div class="booking-card">
+                
+                <!-- Success Message Container -->
+                <div id="successMessage"></div>
+
+                <form id="appointmentForm" onsubmit="handleBooking(event)">
+                    <div class="form-group">
+                        <label for="name">Your Full Name</label>
+                        <input type="text" id="name" required placeholder="e.g., John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="e.g., 050XXXXXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Select Hairstyle/Service</label>
+                        <select id="service" required>
+                            <option value="" disabled selected>Select a style...</option>
+                            <option value="Skin Fade / Bald Fade ($35)">Skin Fade / Bald Fade — $35</option>
+                            <option value="Classic Buzz Cut ($20)">Classic Buzz Cut — $20</option>
+                            <option value="The Taper Fade ($30)">The Taper Fade — $30</option>
+                            <option value="Textured Crop ($35)">Textured Crop — $35</option>
+                            <option value="Pompadour / Quiff ($40)">Pompadour / Quiff — $40</option>
+                            <option value="Gentleman’s Side Part ($30)">Gentleman’s Side Part — $30</option>
+                            <option value="Haircut & Beard Groom ($55)">Combo: Haircut & Beard Groom — $55</option>
+                            <option value="Lineup & Beard Detailing ($25)">Lineup & Beard Detailing — $25</option>
+                        </select>
+                    </div>
+
+                    <div class="form-items" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Preferred Time</label>
+                            <input type="time" id="time" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Confirm Booking</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-highlight">ESSENTIAL HAIRCUTS</p>
+        <p>For urgent changes or walk-in inquiries, call us directly at: <span style="color: var(--accent-color);">0509529509</span></p>
+        <p style="font-size: 0.8rem; color: #777; margin-top: 1.5rem;">&copy; 2026 Essential Haircuts. All rights reserved.</p>
+    </footer>
+
+    <!-- Booking Logic Script -->
+    <script>
+        // Set the minimum selectable date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').min = today;
+
+        function handleBooking(event) {
+            event.preventDefault();
+            
+            // Get values from form
+            const clientName = document.getElementById('name').value;
+            const selectedService = document.getElementById('service').value;
+            const selectedDate = document.getElementById('date').value;
+            const selectedTime = document.getElementById('time').value;
+
+            // Display success message
+            const successBox = document.getElementById('successMessage');
+            successBox.innerHTML = `<strong>Appointment Requested!</strong><br>Thank you, ${clientName}. We've saved your slot for a <strong>${selectedService}</strong> on ${selectedDate} at ${selectedTime}.<br>See you soon!`;
+            successBox.style.display = 'block';
+
+            // Reset the form
+            document.getElementById('appointmentForm').reset();
+            
+            // Scroll smoothly back up to the success message box
+            successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+                      </html>
